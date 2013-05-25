@@ -1,0 +1,4 @@
+[server]
+root=.
+static=static
+debug=True
