@@ -3,6 +3,7 @@
 import flask
 import ConfigParser
 import sys
+import ujson as json
 
 import cPickle as pickle
 
@@ -59,15 +60,15 @@ def index():
 
     return flask.make_response(flask.render_template('index.html'))
 
-@app.route('/lead')
-def lead():
-    '''Lead-sheet generator'''
+@app.route('/harmony')
+def harmony():
+    '''Harmony generator'''
 
     A = make_chord_sequence(HMM['H'], 8, HMM['num_to_chord'])
     B = make_chord_sequence(HMM['H'], 8, HMM['num_to_chord'])
 
     sequence = [A, A, B, A]
-    return str(sequence)
+    return json.encode(sequence)
 
 def loadHMM(filepath):
 
