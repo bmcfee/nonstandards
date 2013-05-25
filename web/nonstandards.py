@@ -27,7 +27,7 @@ def loadConfig(server_ini):
 
     for (k, v) in CFG['server'].iteritems():
         app.config[k] = v
-    
+
     return CFG
 
 
@@ -36,7 +36,7 @@ def run(**kwargs):
 
 def make_chord_sequence(H, n, num_to_chord):
     '''Sample a chord progression
-    
+
     Arguments:
         H  -- (sklearn.hmm.MultinomialHMM)  the trained model
         n  -- (int>0) length of the progression to generate
@@ -83,5 +83,5 @@ if __name__ == '__main__':
 #     run()
     loadHMM(app.config['hmm'])
 
-    run(host='0.0.0.0')
+    run(host='0.0.0.0', port=8080)
 
