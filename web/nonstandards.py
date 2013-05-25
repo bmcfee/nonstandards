@@ -3,6 +3,7 @@
 import flask
 import ConfigParser
 import sys
+import os
 
 import cPickle as pickle
 
@@ -83,5 +84,9 @@ if __name__ == '__main__':
 #     run()
     loadHMM(app.config['hmm'])
 
-    run(host='0.0.0.0', port=8080)
+    port = 5000
+    if os.environ.get('ENV') == 'production':
+        port = 80
+
+    run(host='0.0.0.0', port=port)
 
