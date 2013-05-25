@@ -18,7 +18,7 @@ app.config.from_object(__name__)
 def loadConfig(server_ini):
     P       = ConfigParser.RawConfigParser()
 
-    P.opionxform    = str
+    P.optionxform    = str
     P.read(server_ini)
 
     CFG = {}
@@ -48,7 +48,12 @@ def make_chord_sequence(H, n, num_to_chord):
 
     return map(lambda x: num_to_chord[x], H.sample(n)[0])
 
-@app.route('/', methods=['GET'])
+@app.route('/health-check', methods=['GET'])
+def healthcheck():
+    return {'status': 'OK'}
+
+
+@app.route('/')
 def index():
     '''Top-level web page'''
 
@@ -75,5 +80,4 @@ if __name__ == '__main__':
     loadHMM(app.config['hmm'])
 
     run(host='0.0.0.0')
-
 
