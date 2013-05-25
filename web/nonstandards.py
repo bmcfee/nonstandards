@@ -30,6 +30,11 @@ def run(**kwargs):
     app.run(**kwargs)
 
 
+@app.route('/health-check', methods=['GET'])
+def index():
+    return {'status': 'OK'}
+
+
 @app.route('/', methods=['GET'])
 def index():
     '''Top-level web page'''
@@ -41,6 +46,6 @@ def index():
 if __name__ == '__main__':
     CFG = loadConfig(sys.argv[1])
 #     run()
-    run(host='0.0.0.0')
+    run(host='0.0.0.0', port=8080)
 
 
