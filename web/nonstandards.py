@@ -46,7 +46,7 @@ def make_chord_sequence(H, n, num_to_chord):
         S  -- (list of str) the generated sequence
     '''
 
-    return map(lambda x: num_to_chord[x], H.sample(n)[0])
+    return [num_to_chord[x] for x in H.sample(n)[0]]
 
 @app.route('/health-check', methods=['GET'])
 def healthcheck():
@@ -63,7 +63,11 @@ def index():
 def lead():
     '''Lead-sheet generator'''
 
-    return str(make_chord_sequence(HMM['H'], 8, HMM['num_to_chord']))
+    A = make_chord_sequence(HMM['H'], 8, HMM['num_to_chord'])
+    B = make_chord_sequence(HMM['H'], 8, HMM['num_to_chord'])
+
+    sequence = [A, A, B, A]
+    return str(sequence)
 
 def loadHMM(filepath):
 
