@@ -2,3 +2,4 @@
 root=.
 static=static
 debug=True
+hmm=hmm_chords.pickle
